@@ -123,6 +123,33 @@ void run_full_benchmark(char *filename)
         fprintf(file, "Heap Sort,%d,%.2f\n", size, time);
         printf("  Heap Sort: %.2f ms\n", time);
 
+        // Test Shell Sort
+        copy_array(original, test, size);
+        time = benchmark_sort(shellSort, test, size);
+        fprintf(file, "Shell Sort,%d,%.2f\n", size, time);
+        printf("  Shell Sort: %.2f ms\n", time);
+
+        // Test Insertion Sort
+        copy_array(original, test, size);
+        time = benchmark_sort(insertionSort, test, size);
+        fprintf(file, "Insertion Sort,%d,%.2f\n", size, time);
+        printf("  Insertion Sort: %.2f ms\n", time);
+
+        // Test Selection Sort
+        copy_array(original, test, size);
+        time = benchmark_sort(selectionSort, test, size);
+        fprintf(file, "Selection Sort,%d,%.2f\n", size, time);
+        printf("  Selection Sort: %.2f ms\n", time);
+
+        // Test Bubble Sort (only for smaller sizes - it's too slow!)
+        if (size <= 50000)
+        {
+            copy_array(original, test, size);
+            time = benchmark_sort(bubbleSort, test, size);
+            fprintf(file, "Bubble Sort,%d,%.2f\n", size, time);
+            printf("  Bubble Sort: %.2f ms\n", time);
+        }
+
         free(original);
         free(test);
     }
